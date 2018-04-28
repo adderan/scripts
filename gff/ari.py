@@ -68,8 +68,16 @@ def findIntersectionEfficient(features, refFeatures):
 
         i = 0
         for feature in features[chrom]:
+            if i >= len(refFeatures[chrom]):
+                break
+
             while overlap(feature, refFeatures[chrom][i]) > 0:
                 i = i + 1
+                if i >= len(refFeatures[chrom]):
+                    break
+            if i >= len(refFeatures[chrom]):
+                break
+
             if overlap(feature, refFeatures[chrom][i]) == 0:
                 #print "Found overlap betwen " + feature.name + " and " + refFeatures[chrom][i].name
                 elements.append(Element(name=feature.name, refName=refFeatures[chrom][i].name))
